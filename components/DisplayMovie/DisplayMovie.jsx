@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-
-const API_KEY = 'b0bd9aa5a49153985d1e23b37df41415';
-const API_URL = 'https://api.themoviedb.org/3/discover/movie';
+import { API_KEY, API_URL } from './utils';
 
 const GenreMovies = ({ genreId }) => {
   const [movies, setMovies] = useState([]);
@@ -11,9 +9,9 @@ const GenreMovies = ({ genreId }) => {
   useEffect(() => {
     const getMovies = async () => {
       try {
-        const response = await axios.get(API_URL, {
+        const response = await axios.get(`${API_URL}`, {
           params: {
-            api_key: API_KEY,
+            api_key: `${API_KEY}`,
             with_genres: genreId
           }
         });
@@ -44,4 +42,3 @@ const GenreMovies = ({ genreId }) => {
 };
 
 export default GenreMovies;
-
